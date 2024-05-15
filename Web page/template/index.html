@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function updateHiddenValues() {
+        // Array of MCQ IDs
+        var mcqIds = ["mcq1",]; // Add more IDs as needed
+
+        // Loop through each MCQ
+        mcqIds.forEach(function (mcqId) {
+            // Get the selected option value
+            var selectedOption = document.getElementById(mcqId).value;
+
+            // Update the corresponding hidden input value based on option ID
+            var hiddenInput = document.getElementById(selectedOption);
+            if (hiddenInput) {
+                hiddenInput.value = selectedOption;
+            } else {
+                console.error("No hidden input found with ID: " + selectedOption);
+            }
+        });
+    }
+</script>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+
+    <title>Mental Health Predictor</title>
+
+    <!-- CSS  -->
+    
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="Web page/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+    <!-- <img src="./images/9.jpg" alt="image"> -->
+
+    <h1>Employee Mental Health Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required><br><br>
+
+        <input type="hidden" name="const" value="1">
+
+        <label>Gender:</label><br>
+        <input type="radio" id="gender_male" name="gender" value="1">
+        <label for="gender_male">Male</label><br>
+        <input type="radio" id="gender_female" name="gender" value="0">
+        <label for="gender_female">Female</label><br>
+        <input type="hidden" name="gender_other" value="0">
+        <input type="radio" id="gender_other" name="gender" value="0">
+        <label for="gender_other">Other</label><br><br>
+
+        <label>Self Employed:</label><br>
+        <input type="radio" id="self_employed_yes" name="self_employed" value="1">
+        <label for="self_employed_yes">Yes</label><br>
+        <input type="radio" id="self_employed_no" name="self_employed" value="0">
+        <label for="self_employed_no">No</label><br><br>
+
+        <!-- Add more multiple-choice questions -->
+        <label>Family_History</label>
+        <input type="radio" id="Family_History_yes" name="family_history" value="1">
+        <label for="family_history_yes">Yes</label>
+        <input type="radio" id="family_history_no" name="family_history" value="0">
+        <label for="family_history_no">No</label><br><br>
+
+        <div>Work_Interfere :
+            <input type="hidden" name="Work_Interfere_Often" id="Work_Interfere_Often" value="0">
+            <input type="hidden" name="Work_Interfere_Rarely" id="Work_Interfere_Rarely" value="0">
+            <input type="hidden" name="Work_Interfere_Sometimes" id="Work_Interfere_Sometimes" value="0">
+
+            <input type="radio" id="often_radio" name="Work_Interfere_Often" value="1">
+            <label for="often_radio">Often</label>
+
+            <input type="radio" id="rarely_radio" name="Work_Interfere_Rarely" value="1">
+            <label for="rarely_radio">Rarely</label>
+
+            <input type="radio" id="sometimes_radio" name="Work_Interfere_Sometimes" value="1">
+            <label for="sometimes_radio">Sometimes</label><br>
+        </div>
+
+        <div>
+
+        </div><br><br>
+
+        <label for="age">Employee Count: </label>
+        <select name=“count” required>
+            <option value = “0”>Select</option>
+            <option value=“1”>6-25</option>
+            <option value=“1”>26-100</option>
+            <option value=“1”>100-500</option>
+            <option value=“1”>500-1000</option>
+            <option value=“1”>More than 1000</option>
+        </select><br><br>
+
+        <label>Remote Work:</label><br>
+        <input type="radio" id="remote_work_yes" name="remote_work" value="1">
+        <label for="remote_work_yes">Yes</label><br>
+        <input type="radio" id="remote_work_no" name="remote_work" value="0">
+        <label for="remote_work_no">No</label><br><br>
+
+        <label>Tech Company:</label><br>
+        <input type="radio" id="tech_company_yes" name="tech_company" value="1">
+        <label for="tech_company_yes">Yes</label><br>
+        <input type="radio" id="tech_company_no" name="tech_company" value="0">
+        <label for="tech_company_no">No</label><br><br>
+
+        <label>Benifits:</label><br>
+        <input type="radio" id="benifits_yes" name="benifits" value="1">
+        <label for="benifits_yes">Yes</label><br>
+        <input type="radio" id="benifits_no" name="benifits" value="0">
+        <label for="benifits_no">No</label><br><br>
+
+        <label>Care Option:</label><br>
+        <input type="radio" id="care_option_yes" name="care_option" value="1">
+        <label for="care_option_yes">Yes</label><br>
+        <input type="radio" id="care_option_no" name="care_option" value="0">
+        <label for="care_option_no">No</label><br><br>
+
+        <label>Wellness-Program:</label><br>
+        <input type="radio" id="wellness_program_yes" name="wellness_program" value="1">
+        <label for="wellness_program_yes">Yes</label><br>
+        <input type="radio" id="wellness_program_no" name="wellness_program" value="0">
+        <label for="wellness_program_no">No</label><br><br>
+
+        <label>Seek Help No:</label><br>
+        <input type="radio" id="seek_help_yes" name="seek_help" value="1">
+        <label for="seek_help_yes">Yes</label><br>
+        <input type="radio" id="seek_help_no" name="seek_help" value="0">
+        <label for="seek_help_no">No</label><br><br>
+
+        <label>Anonymity-No:</label><br>
+        <input type="radio" id="anonymity_yes" name="anonymity" value="1">
+        <label for="anonymity_yes">Yes</label><br>
+        <input type="radio" id="anonymity_no" name="anonymity" value="0">
+        <label for="anonymity_no">No</label><br><br>
+
+        <label for="medical-leave">Medical-Leave: </label>
+        <select name=“medical-leave” required>
+            <option value = “0”>Select</option>
+            <option value=“1”>Somewhat Difficult</option>
+            <option value=“1”>Somewhat Easy</option>
+            <option value=“1”>Very Difficult</option>
+            <option value=“1”>Very Easy</option>
+        </select><br><br>
+
+        <label>Mental Health Consequences:</label><br>
+        <input type="radio" id="mental_health_consequences_yes" name="mental_health_consequences" value="1">
+        <label for="mental_health_consequences_yes">Yes</label><br>
+        <input type="radio" id="mental_health_consequences_no" name="mental_health_consequences" value="0">
+        <label for="mental_health_consequences_no">No</label><br><br>
+
+        <label>Physical Health Consequences:</label><br>
+        <input type="radio" id="physical_health_consequences_yes" name="physical_health_consequences" value="1">
+        <label for="physical_health_consequences_yes">Yes</label><br>
+        <input type="radio" id="physical_health_consequences_no" name="physical_health_consequences" value="0">
+        <label for="physical_health_consequences_no">No</label><br><br>
+
+        <label>Co-Workers Reach:</label><br>
+        <input type="radio" id="co-workers_reach_yes" name="co-workers_reach" value="1">
+        <label for="co-workers_reach_yes">Yes</label><br>
+        <input type="radio" id="co-workers_reach_no" name="co-workers_reach" value="0">
+        <label for="co-workers_reach_no">No</label><br><br>
+
+        <label>Supervisor Reach:</label><br>
+        <input type="radio" id="superviser_reach_yes" name="superviser_reach" value="1">
+        <label for="superviser_reach_yes">Yes</label><br>
+        <input type="radio" id="superviser_reach_no" name="superviser_reach" value="0">
+        <label for="superviser_reach_no">No</label><br><br>
+
+        <label>Mental Health Interview:</label><br>
+        <input type="radio" id="mental_health_interview_yes" name="mental_health_interview" value="1">
+        <label for="mental_health_interview_yes">Yes</label><br>
+        <input type="radio" id="mental_health_interview_no" name="mental_health_interview" value="0">
+        <label for="mental_health_interview_no">No</label><br><br>
+
+        <label>Physical Health Interview:</label><br>
+        <input type="radio" id="physical_health_interview_yes" name="physical_health_interview" value="1">
+        <label for="physical_health_interview_yes">Yes</label><br>
+        <input type="radio" id="physical_health_interview_no" name="physical_health_interview" value="0">
+        <label for="physical_health_interview_no">No</label><br><br>
+
+        <label>Mental Physical Interview:</label><br>
+        <input type="radio" id="mental_physical_interview_yes" name="mental_physical_interview" value="1">
+        <label for="mental_physical_interview_yes">Yes</label><br>
+        <input type="radio" id="mental_physical_interview_no" name="mental_physical_interview" value="0">
+        <label for="mental_physical_interview_no">No</label><br><br>
+
+        <label>Observe Consequence Workplace:</label><br>
+        <input type="radio" id="observe_consequence_workplace_yes" name="observe_consequence_workplace" value="1">
+        <label for="observe_consequence_workplace_yes">Yes</label><br>
+        <input type="radio" id="observe_consequence_workplace_no" name="observe_consequence_workplace" value="0">
+        <label for="observe_consequence_workplace_no">No</label><br><br>
+
+
+
+        <input type="submit" value="Predict">
+    </form>
+</body>
+
+</html>
